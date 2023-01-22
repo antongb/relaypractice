@@ -5,28 +5,19 @@ import Story from "./Story";
 import type { NewsfeedQuery as NewsfeedQueryType } from './__generated__/NewsfeedQuery.graphql';
 
 
+
 const NewsfeedQuery = graphql`
   query NewsfeedQuery {
     topStory {
-      title
-      summary
-      poster {
-        name
-        profilePicture {
-          url
-        }
-      }
-      thumbnail {
-        url
-      }
+      ...StoryFragment
     }
   }
 `;
 
-export default function Newsfeed({}) {
+export default function Newsfeed() {
   const data = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
   console.log(data);
-  const story = data.topStory;
+  const story = data.topStories[0];
   // const story = {
   //   title: "Placeholder Story",
   //   summary: "Placeholder data, to be replaced with data fetched via GraphQL",
