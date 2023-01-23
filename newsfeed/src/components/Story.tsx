@@ -20,7 +20,7 @@ const StoryFragment = graphql`
       ...PosterBylineFragment
     }
     thumbnail {
-      url
+      ...ImageFragment
     }
   }
 `;
@@ -31,7 +31,7 @@ type Props = {
 
 export default function Story({ story }: Props): React.ReactElement {
   const data = useFragment(StoryFragment, story);
-  return (console.log(data.poster) ||
+  return (
     <Card>
       <PosterByline poster={data.poster} />
       <Heading>{data.title}</Heading>

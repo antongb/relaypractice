@@ -10,7 +10,7 @@ const PosterBylineFragment = graphql`
     poster {
       name
       profilePicture {
-        url
+        ImageFragment
       }
     }
   }
